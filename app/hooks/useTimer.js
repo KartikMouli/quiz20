@@ -4,11 +4,13 @@ import { useEffect } from 'react';
 const useTimer = (
     timer,
     setTimer,
-    showResultModal
+    showResultModal,
+    setShowResultModal
 ) => {
     useEffect(() => {
         if (timer <= 0) {
             setTimer(0);
+            setShowResultModal(true)
         }
     }, [timer, setTimer]);
 
