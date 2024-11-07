@@ -13,8 +13,8 @@ export default function Home() {
 
   return (
     <>
-      <header className="flex justify-between items-center py-2 px-4 bg-black text-white">
-        <h1 className="text-2xl font-bold ">Quiz20</h1>
+      <header className="flex justify-between items-center py-2 px-4 bg-black/85 text-white">
+        <h1 className="text-3xl font-semibold ">Quiz20</h1>
         <Timer timer={timer} />
         <span>Theme</span>
       </header>

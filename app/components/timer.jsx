@@ -6,9 +6,8 @@ function formatTime(time) {
 }
 
 function Timer({timer}) {
-    console.log(timer)
     return (
-        <div className="bg-white py-1 px-4 text-black text-3xl font-semibold rounded-full">
+        <div className="bg-white px-5 text-black/85 text-3xl font-semibold rounded-full">
             {formatTime(timer)}
         </div>
     );
