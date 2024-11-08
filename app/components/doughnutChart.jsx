@@ -1,18 +1,22 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
-import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale } from 'chart.js';
+import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement } from 'chart.js';
+import { useQuizContext } from '../context/quizContext';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 // Register necessary Chart.js components
-ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale);
+ChartJS.register(Title, Tooltip, Legend, ArcElement, ChartDataLabels);
 
-const DoughnutChart = () => {
+const DoughnutChart = ({ total }) => {
+    const { correct, incorrect, unattempted } = useQuizContext();
+
+    // Chart data and configuration
     const data = {
         labels: ['Correct', 'Incorrect', 'Not Attempted'],
         datasets: [
             {
-                data: [75, 20, 5],  // Example data, modify as needed
-                backgroundColor: ['#4CAF50', '#F44336', '#FFEB3B'],  // Green, Red, Yellow
-                // borderColor: ['#4CAF50', '#F44336', '#FFEB3B'],
+                data: [correct, incorrect, unattempted],
+                backgroundColor: ['#4CAF50', '#F44336', '#FFEB3B'],
                 borderWidth: 1,
             },
         ],
@@ -24,13 +28,34 @@ const DoughnutChart = () => {
             legend: {
                 position: 'bottom',
             },
+            datalabels: {
+                display: false, // Hide segment labels
+            },
+        },
+    };
+
+    // Custom plugin to render score in the center of the chart
+    const textCenterPlugin = {
+        id: 'textCenter',
+        beforeDraw(chart) {
+            const { ctx, chartArea: { top, bottom, left, right } } = chart;
+            const centerX = (left + right) / 2;
+            const centerY = (top + bottom) / 2;
+
+            ctx.save();
+            ctx.font = '16px sans-serif';
+            ctx.fillStyle = 'black';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(`Score: ${total}`, centerX, centerY);
+            ctx.restore();
         },
     };
 
     return (
         <div className="flex justify-center items-center p-4">
-            <div className="w-72 h-72">
-                <Doughnut data={data} options={options} />
+            <div className="w-64 h-64 md:h-96 md:w-96" >
+                <Doughnut data={data} options={options} plugins={[textCenterPlugin]} />
             </div>
         </div>
     );

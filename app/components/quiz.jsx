@@ -1,102 +1,96 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import SubmitModal from "./submitModal";
-
-const quizQuestions = [
-    {
-        question: "Which one of the following is used for manufacturing safety matches?",
-        options: ["Di-phosphorus", "Black phosphorus", "Red phosphorus", "None of the above"],
-        answer: "Red phosphorus",
-    },
-    {
-        question: "What is the powerhouse of the cell?",
-        options: ["Nucleus", "Mitochondria", "Ribosome", "Endoplasmic Reticulum"],
-        answer: "Mitochondria",
-    },
-    {
-        question: "Which planet is known as the Red Planet?",
-        options: ["Earth", "Jupiter", "Mars", "Saturn"],
-        answer: "Mars",
-    },
-    {
-        question: "What is the chemical symbol for water?",
-        options: ["H2O", "O2", "CO2", "NaCl"],
-        answer: "H2O",
-    },
-    {
-        question: "Which gas do plants absorb from the atmosphere?",
-        options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Helium"],
-        answer: "Carbon Dioxide",
-    },
-];
+import { useQuizContext } from "../context/quizContext";
 
 function Quiz() {
+    const { setCorrect, setIncorrect, setUnattempted, handleShowResult, quizQuestions, showResultModal } = useQuizContext();
+
+    // Handle loading state for quiz questions
+    if (!quizQuestions || quizQuestions.length === 0) {
+        return <div>Loading...</div>;
+    }
+
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [selectedAnswers, setSelectedAnswers] = useState(Array(quizQuestions.length).fill(null));
     const [statuses, setStatuses] = useState(Array(quizQuestions.length).fill(null));
-    const [showSubmitModal, setShowSubmitModal] = useState(false)
+    const [showSubmitModal, setShowSubmitModal] = useState(false);
 
+    // Calculate quiz results based on answers
+    const calculateResults = () => {
+        let correct = 0;
+        let incorrect = 0;
+        let unattempted = 0;
 
-    const handleNext = () => {
-        if (currentQuestion < quizQuestions.length - 1) {
-            setCurrentQuestion(currentQuestion + 1);
-            setSelectedAnswer(selectedAnswers[currentQuestion + 1]);
-        }
-        if (!selectedAnswer) {
-            const newStatuses = [...statuses];
-            newStatuses[currentQuestion] = 'skipped'; // Update status based on the selection
-            setStatuses(newStatuses);
-        }
+        selectedAnswers.forEach((isCorrect) => {
+            if (isCorrect === null) unattempted++;
+            else if (isCorrect) correct++;
+            else incorrect++;
+        });
+
+        setCorrect(correct);
+        setIncorrect(incorrect);
+        setUnattempted(unattempted);
     };
 
-    const handlePrevious = () => {
-        if (currentQuestion > 0) {
-            setCurrentQuestion(currentQuestion - 1);
-            setSelectedAnswer(selectedAnswers[currentQuestion - 1]);
-        }
+    // Handle navigation between questions
+    const navigateQuestion = (direction) => {
+        const newQuestionIndex = currentQuestion + direction;
+        setCurrentQuestion(newQuestionIndex);
+        setSelectedAnswer(selectedAnswers[newQuestionIndex]);
 
-        if (!selectedAnswer) {
-            const newStatuses = [...statuses];
-            newStatuses[currentQuestion] = 'skipped'; // Update status based on the selection
-            setStatuses(newStatuses);
+        if (!selectedAnswer && statuses[currentQuestion] !== 'solved') {
+            setStatuses((prev) => {
+                const updatedStatuses = [...prev];
+                updatedStatuses[currentQuestion] = 'skipped';
+                return updatedStatuses;
+            });
         }
+        calculateResults();
     };
 
     const handleAnswerSelection = (option) => {
+        const correctAnswer = quizQuestions[currentQuestion].answer;
+
         setSelectedAnswer(option);
+        setSelectedAnswers((prev) => {
+            const updatedAnswers = [...prev];
+            updatedAnswers[currentQuestion] = option === correctAnswer;
+            return updatedAnswers;
+        });
 
-        const newStatuses = [...statuses];
-        newStatuses[currentQuestion] = 'solved'
-        setStatuses(newStatuses);
+        setStatuses((prev) => {
+            const updatedStatuses = [...prev];
+            updatedStatuses[currentQuestion] = 'solved';
+            return updatedStatuses;
+        });
 
-        const newSelectedAnswers = [...selectedAnswers];
-        newSelectedAnswers[currentQuestion] = option;
-        setSelectedAnswers(newSelectedAnswers)
-
+        calculateResults();
     };
 
-    const handleCircleClick = (index) => {
-        setCurrentQuestion(index);
-        setSelectedAnswer(selectedAnswers[index]);
+    // Open and close submit modal
+    const handleOpenSubmitModal = () => {
+        calculateResults();
+        setShowSubmitModal(true);
     };
-
-    const handleCloseModal = () => {
-        setShowSubmitModal(false); // Close the modal
-    };
+    const handleCloseSubmitModal = () => setShowSubmitModal(false);
 
 
-    const unattemptedQuestion = selectedAnswers.filter(answer => answer === null).length;
+    useEffect(() => {
+        calculateResults()
+    }, [selectedAnswers, currentQuestion])
+
 
     return (
         <>
             <div className="flex flex-col p-2 mt-2">
-                <div className="flex justify-between mt-2 px-2  items-center">
-                    <h2 className="text-xl font-semibold ">Quiz by Quiz20</h2>
+                <div className="flex justify-between mt-2 px-2 items-center">
+                    <h2 className="text-xl font-semibold">Quiz by Quiz20</h2>
                     <button
                         className="text-sm bg-blue-500 text-white py-2 px-12 md:min-w-96 rounded-xl"
-                        onClick={() => setShowSubmitModal(true)}
+                        onClick={handleOpenSubmitModal}
                     >
                         Submit
                     </button>
@@ -106,11 +100,15 @@ function Quiz() {
                 <ProgressBar
                     questions={quizQuestions}
                     currentQuestionIndex={currentQuestion}
-                    statuses={statuses} // Pass the statuses array to ProgressBar
-                    onCircleClick={handleCircleClick}
+                    statuses={statuses}
+                    onCircleClick={(index) => {
+                        calculateResults();
+                        setCurrentQuestion(index);
+                        setSelectedAnswer(selectedAnswers[index]);
+                    }}
                 />
 
-                <div className="mt-6">
+                <div className="mt-6 overflow-y-auto">
                     <h2 className="mb-6 text-blue-400 text-md font-semibold">
                         Question {currentQuestion + 1} of {quizQuestions.length}
                     </h2>
@@ -123,11 +121,9 @@ function Quiz() {
                                 onClick={() => handleAnswerSelection(option)}
                                 className={`flex items-center p-2 rounded-lg ${selectedAnswer === option ? 'border-2 border-blue-500' : ''}`}
                             >
-                                {/* Circle with the index (A, B, C, D) */}
                                 <div className={`flex items-center justify-center w-9 h-9 mr-4 ${selectedAnswer === option ? 'bg-blue-500' : 'bg-gray-400'} text-white font-bold rounded-full`}>
                                     {String.fromCharCode(65 + index)}
                                 </div>
-                                {/* Option Text */}
                                 <span className="text-xs md:text-sm">{option}</span>
                             </button>
                         ))}
@@ -136,25 +132,27 @@ function Quiz() {
 
                 <div className="fixed bottom-0 left-0 right-0 p-4 flex justify-center gap-x-2">
                     <button
-                        onClick={handlePrevious}
+                        onClick={() => navigateQuestion(-1)}
                         disabled={currentQuestion === 0}
-                        className="flex justify-around items-center py-4  w-full bg-black/85 rounded-xl disabled:bg-black/40 text-gray-100 font-semibold"
+                        className="flex justify-around items-center py-4 w-full bg-black/85 rounded-xl disabled:bg-black/40 text-gray-100 font-semibold"
                     >
                         <FaChevronLeft size={13} /> Previous
                     </button>
                     <button
-                        onClick={handleNext}
+                        onClick={() => navigateQuestion(1)}
                         disabled={currentQuestion === quizQuestions.length - 1}
-                        className="flex justify-around items-center py-4  w-full bg-black/85  rounded-xl disabled:bg-black/40 text-gray-100 font-semibold"
+                        className="flex justify-around items-center py-4 w-full bg-black/85 rounded-xl disabled:bg-black/40 text-gray-100 font-semibold"
                     >
                         Next <FaChevronRight size={13} />
                     </button>
                 </div>
             </div>
+
             <SubmitModal
                 isOpen={showSubmitModal}
-                onClose={handleCloseModal}
-                unattemptedQuestion={unattemptedQuestion}
+                onClose={handleCloseSubmitModal}
+                showResult={handleShowResult}
+                unattempted={selectedAnswers.filter((answer) => answer === null).length}
             />
         </>
     );

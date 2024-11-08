@@ -1,60 +1,62 @@
-import React, { useState } from 'react'
-import DoughnutChart from './doughnutChart'
+import React from 'react';
+import DoughnutChart from './doughnutChart';
 import { MdLeaderboard } from "react-icons/md";
 import { IoMdShare } from "react-icons/io";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { useQuizContext } from '../context/quizContext';
 
 function Result() {
+  const { correct, incorrect } = useQuizContext();
 
-  const [score, setScore] = useState(4);
-  const [correct, setCorrect] = useState(2);
-  const [incorrect, setIncorrect] = useState(5);
+  const positive = (1 * correct).toFixed(2);
+  const negative = (-0.33 * incorrect).toFixed(2);
+  const total = (parseFloat(positive) + parseFloat(negative)).toFixed(2);
+
   return (
-    <div className="fixed inset-0 z-50 min-h-screen flex flex-col  p-2 bg-white">
-      <h1 className='text-3xl p-2 mt-10 text-center'>Quiz by Quiz10</h1>
-      <h2 className='text-3xl font-semibold mt-4 text-center'>Quiz20</h2>
+    <div className="fixed inset-0 z-50 min-h-screen flex flex-col bg-white p-4">
+      <div className="flex flex-col flex-grow overflow-y-auto">
+        <h1 className="text-3xl p-2 mt-10 text-center">Quiz by Quiz10</h1>
+        <h2 className="text-3xl font-semibold mt-4 text-center">Quiz20</h2>
 
-      <div className="flex flex-col justify-center items-center p-2 mt-12">
-        <DoughnutChart />
+        {/* Doughnut Chart */}
+        <div className="flex flex-col items-center p-2 mt-12">
+          <DoughnutChart total={total} />
+        </div>
+
+        {/* Score Summary */}
+        <div className="grid grid-cols-3 gap-2 px-8 text-sm font-semibold text-gray-600 my-4 text-center">
+          <div>
+            <p>Positive</p>
+            <p className="font-bold mt-2">{positive}</p>
+          </div>
+          <div>
+            <p>Negative</p>
+            <p className="font-bold mt-2">{negative}</p>
+          </div>
+          <div>
+            <p>Total</p>
+            <p className="font-bold mt-2">{total}</p>
+          </div>
+        </div>
       </div>
 
-      {/* Score Summary */}
-      <div className="grid grid-cols-3 gap-2 px-8 text-sm font-semibold text-gray-600 my-4 text-center">
-        <div>
-          <p>Positive</p>
-          <p className='font-bold mt-2'>{(correct * 1).toFixed(2)}</p>
-        </div>
-        <div>
-          <p>Negative</p>
-          <p className='font-bold mt-2'>{(-incorrect * 1).toFixed(2)}</p>
-        </div>
-        <div>
-          <p>Total</p>
-          <p className='font-bold mt-2'>{(correct - incorrect).toFixed(2)}</p>
-        </div>
-      </div>
-
-      {/* Leaderboard Button */}
-      <div className="flex justify-center p-2 mt-auto w-full">
-        <button className="flex items-center justify-around bg-pink-600 text-white py-4 rounded-lg font-semibold w-full gap-2">
+      {/* Buttons Section */}
+      <div className="w-full space-y-2 mt-auto">
+        <button className="flex items-center justify-center bg-pink-600 text-white py-4 rounded-lg font-semibold w-full gap-2">
           LEADERBOARD <MdLeaderboard size={24} />
         </button>
+
+        <div className="flex gap-2 w-full">
+          <button className="flex items-center justify-center py-4 w-full sm:w-1/2 bg-black/85 rounded-xl text-gray-100 font-semibold gap-2">
+            <IoMdShare size={24} /> Share
+          </button>
+          <button className="flex items-center justify-center py-4 w-full sm:w-1/2 bg-black/85 rounded-xl text-gray-100 font-semibold gap-2">
+            <MdOutlineRemoveRedEye size={24} /> Answers
+          </button>
+        </div>
       </div>
-
-      {/* Share and Answers Buttons */}
-      <div className="flex justify-center gap-2 p-2 mb-4 w-full">
-        <button className="flex justify-around items-center py-4 w-full bg-black/85 rounded-xl text-gray-100 font-semibold">
-          <IoMdShare size={24} /> Share
-        </button>
-        <button className="flex justify-around items-center py-4 w-full bg-black/85 rounded-xl text-gray-100 font-semibold">
-          <MdOutlineRemoveRedEye size={24} /> Answers
-        </button>
-      </div>
-
-
-
     </div>
-  )
+  );
 }
 
-export default Result
+export default Result;

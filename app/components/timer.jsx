@@ -5,7 +5,8 @@ function formatTime(time) {
     return `${minutes}:${seconds.toString().padStart(2, '0')}`
 }
 
-function Timer({timer}) {
+function Timer({ timer }) {
+
     return (
         <div className="bg-white px-5 text-black/85 text-3xl font-semibold rounded-full">
             {formatTime(timer)}

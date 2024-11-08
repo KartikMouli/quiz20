@@ -1,27 +1,26 @@
-"use client"
+"use client";
+
 import Timer from "./components/timer";
 import Quiz from "./components/quiz";
-import useTimer from "./hooks/useTimer";
-import { useState } from "react";
 import Result from "./components/result";
+import useTimer from "./hooks/useTimer";
+import { useQuizContext } from "./context/quizContext";
+import Header from "./components/header";
+
 
 export default function Home() {
+  const { timer, setTimer, showResultModal, handleShowResult } = useQuizContext();
 
-  const [timer, setTimer] = useState(1200);
-  const [showResultModal, setShowResultModal] = useState(false)
-
-  useTimer(timer, setTimer, showResultModal,setShowResultModal)
+  // Initialize and manage the quiz timer
+  useTimer(timer, setTimer, showResultModal, handleShowResult);
 
   return (
     <>
-      <header className="flex justify-between items-center py-2 px-4 bg-black/85 text-white">
-        <h1 className="text-3xl font-semibold ">Quiz20</h1>
-        <Timer timer={timer} />
-        <span>Theme</span>
-      </header>
+      <Header timer={timer} />
       <Quiz />
-
       {showResultModal && <Result />}
     </>
   );
 }
+
+

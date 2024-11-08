@@ -1,0 +1,102 @@
+[
+    {
+        "question": "Who was the first Governor of Bihar?",
+        "options": [
+            "Rajendra Prasad",
+            "S. K. Sinha",
+            "Dr. Syed Mahmud",
+            "Shyama Prasad Mukherjee"
+        ],
+        "answer": "Dr. Syed Mahmud"
+    },
+    {
+        "question": "Which is the state flower of Bihar?",
+        "options": [
+            "Sunflower",
+            "Lotus",
+            "Rose",
+            "Jasmine"
+        ],
+        "answer": "Lotus"
+    },
+    {
+        "question": "In which year did Bihar attain statehood?",
+        "options": [
+            "1947",
+            "1950",
+            "1956",
+            "1952"
+        ],
+        "answer": "1950"
+    },
+    {
+        "question": "Who is known as the 'Father of Bihar's Revolution'?",
+        "options": [
+            "Ram Manohar Lohia",
+            "Jayaprakash Narayan",
+            "Babu Kunwar Singh",
+            "Sri Krishna Sinha"
+        ],
+        "answer": "Jayaprakash Narayan"
+    },
+    {
+        "question": "What is the capital of Bihar?",
+        "options": [
+            "Patna",
+            "Gaya",
+            "Bhagalpur",
+            "Muzaffarpur"
+        ],
+        "answer": "Patna"
+    },
+    {
+        "question": "Which is the largest river in Bihar?",
+        "options": [
+            "Ganga",
+            "Sone",
+            "Kosi",
+            "Gandak"
+        ],
+        "answer": "Ganga"
+    },
+    {
+        "question": "Who was the first woman Chief Minister of Bihar?",
+        "options": [
+            "Indira Gandhi",
+            "Rabri Devi",
+            "Vishwanath Pratap Singh",
+            "Kedar Pandey"
+        ],
+        "answer": "Rabri Devi"
+    },
+    {
+        "question": "Bihar was part of which ancient kingdom?",
+        "options": [
+            "Maurya Empire",
+            "Gupta Empire",
+            "Magadh",
+            "Chola Empire"
+        ],
+        "answer": "Magadh"
+    },
+    {
+        "question": "Which district in Bihar is known for its Bodhi tree?",
+        "options": [
+            "Patna",
+            "Bodh Gaya",
+            "Muzaffarpur",
+            "Gaya"
+        ],
+        "answer": "Bodh Gaya"
+    },
+    {
+        "question": "What is the official language of Bihar?",
+        "options": [
+            "Hindi",
+            "Bengali",
+            "Bhojpuri",
+            "Maithili"
+        ],
+        "answer": "Hindi"
+    }
+]
