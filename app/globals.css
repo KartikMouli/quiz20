@@ -2,3 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Light mode background color */
+body {
+    @apply bg-white; /* Customize the color as needed */
+  }
+  
+  /* Dark mode background color */
+  .dark body {
+    @apply bg-[#252525]; /* Customize the color for dark mode */
+  }
