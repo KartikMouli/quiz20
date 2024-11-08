@@ -16,7 +16,7 @@ const DoughnutChart = ({ total }) => {
         datasets: [
             {
                 data: [correct, incorrect, unattempted],
-                backgroundColor: ['#4CAF50', '#F44336', '#FFEB3B'],
+                backgroundColor: ['#a1c181', '#f07167', '#d9d9d9'],
                 borderWidth: 1,
             },
         ],

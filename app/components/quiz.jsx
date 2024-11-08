@@ -89,7 +89,7 @@ function Quiz() {
                 <div className="flex justify-between mt-2 px-2 items-center">
                     <h2 className="text-xl font-semibold">Quiz by Quiz20</h2>
                     <button
-                        className="text-sm bg-blue-500 text-white py-2 px-12 md:min-w-96 rounded-xl"
+                        className="text-sm bg-[#2196f3] text-white py-2 px-12 md:min-w-96 rounded-xl font-semibold"
                         onClick={handleOpenSubmitModal}
                     >
                         Submit
@@ -119,9 +119,9 @@ function Quiz() {
                             <button
                                 key={index}
                                 onClick={() => handleAnswerSelection(option)}
-                                className={`flex items-center p-2 rounded-lg ${selectedAnswer === option ? 'border-2 border-blue-500' : ''}`}
+                                className={`flex items-center p-2 rounded-lg ${selectedAnswer === option ? 'border-2 border-[#2196f3]' : ''}`}
                             >
-                                <div className={`flex items-center justify-center w-9 h-9 mr-4 ${selectedAnswer === option ? 'bg-blue-500' : 'bg-gray-400'} text-white font-bold rounded-full`}>
+                                <div className={`flex items-center justify-center w-9 h-9 mr-4 ${selectedAnswer === option ? 'bg-[#2196f3]' : 'bg-[#9e9e9e]'} text-white font-bold rounded-full`}>
                                     {String.fromCharCode(65 + index)}
                                 </div>
                                 <span className="text-xs md:text-sm">{option}</span>

@@ -3,16 +3,16 @@ import { FaCheck } from "react-icons/fa6";
 
 const ProgressBar = ({ questions, currentQuestionIndex, statuses, onCircleClick }) => {
     const getCircleColor = (index) => {
-        if (index === currentQuestionIndex) return 'bg-green-500';
-        if (statuses[index] === 'solved') return 'bg-blue-500';
-        if (statuses[index] === 'skipped') return 'bg-yellow-500';
+        if (index === currentQuestionIndex) return 'bg-[#5ec792]';
+        if (statuses[index] === 'solved') return 'bg-[#2196f3]';
+        if (statuses[index] === 'skipped') return 'bg-[#ffab40]';
         return 'bg-gray-300';
     };
 
     const getTextColor = (index) => {
-        if (index === currentQuestionIndex) return 'text-green-500';
-        if (statuses[index] === 'solved') return 'text-blue-500';
-        if (statuses[index] === 'skipped') return 'text-yellow-500';
+        if (index === currentQuestionIndex) return 'text-[#5ec792]';
+        if (statuses[index] === 'solved') return 'text-[#2196f3]';
+        if (statuses[index] === 'skipped') return 'text-[#ffab40]';
         return 'text-gray-300';
     };
 
