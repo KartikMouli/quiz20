@@ -3,6 +3,8 @@ import ProgressBar from "./ProgressBar";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import SubmitModal from "./submitModal";
 import { useQuizContext } from "../context/quizContext";
+import axios from "axios";
+import { MdGTranslate } from "react-icons/md";
 
 function Quiz() {
     const { setCorrect, setIncorrect, setUnattempted, handleShowResult, quizQuestions, showResultModal } = useQuizContext();
@@ -17,6 +19,54 @@ function Quiz() {
     const [selectedAnswers, setSelectedAnswers] = useState(Array(quizQuestions.length).fill(null));
     const [statuses, setStatuses] = useState(Array(quizQuestions.length).fill(null));
     const [showSubmitModal, setShowSubmitModal] = useState(false);
+    const [translatedQuestions, setTranslatedQuestions] = useState([])
+    const [isTranslated, setIsTranslated] = useState(false);
+
+    const translateText = async (text, targetLang) => {
+        try {
+            const response = await axios.post('/api/translate', {
+                text: text,
+                targetLang: targetLang,
+            });
+
+            console.log("client: ", response)
+
+            return response.data.data.translations[0].translatedText;
+        } catch (error) {
+            console.error("Translation error:", error);
+            return text; // Return original text if translation fails
+        }
+    };
+
+    const translateQuestionsToHindi = async () => {
+        try {
+            const translatedQuestions = await Promise.all(quizQuestions.map(async (question) => {
+                const translatedQuestion = await translateText(question.question, "hi");
+                const translatedOptions = await Promise.all(
+                    question.options.map(async (option) => {
+                        return await translateText(option, "hi");
+                    })
+                );
+                const translatedAnswer = await translateText(question.answer, "hi");
+                return {
+                    ...question,
+                    question: translatedQuestion,
+                    options: translatedOptions,
+                    answer: translatedAnswer,
+                };
+            }));
+
+            setTranslatedQuestions(translatedQuestions);
+        } catch (error) {
+            console.error("Error in translating questions:", error);
+
+        }
+    };
+
+    useEffect(() => {
+        translateQuestionsToHindi()
+    }, [])
+
 
     // Calculate quiz results based on answers
     const calculateResults = () => {
@@ -82,6 +132,14 @@ function Quiz() {
         calculateResults()
     }, [selectedAnswers, currentQuestion])
 
+    // Toggle translation function
+    const toggleTranslation = () => {
+        setIsTranslated((prev) => !prev); // Toggle between original and translated questions
+    };
+
+
+    const currentQuestionData = isTranslated ? translatedQuestions[currentQuestion] : quizQuestions[currentQuestion];
+
 
     return (
         <>
@@ -98,7 +156,7 @@ function Quiz() {
 
                 {/* Progress Bar */}
                 <ProgressBar
-                    questions={quizQuestions}
+                    questions={isTranslated ? translatedQuestions : quizQuestions}
                     currentQuestionIndex={currentQuestion}
                     statuses={statuses}
                     onCircleClick={(index) => {
@@ -109,13 +167,22 @@ function Quiz() {
                 />
 
                 <div className="mt-6 overflow-y-auto">
-                    <h2 className="mb-6 text-blue-400 text-md font-semibold">
-                        Question {currentQuestion + 1} of {quizQuestions.length}
-                    </h2>
-                    <p className="mb-6 text-sm md:text-md font-semibold">{quizQuestions[currentQuestion].question}</p>
+                    <div className="flex justify-between align-center ">
+                        <h2 className="mb-6 text-blue-400 text-md font-semibold">
+                            Question {currentQuestion + 1} of {isTranslated ? translatedQuestions.length : quizQuestions.length}
+                        </h2>
+                        <button
+                            className={`py-1 px-4 ${isTranslated ? "text-blue-500" : "text-black"} `}
+                            onClick={toggleTranslation}
+                        >
+                            <MdGTranslate size={24} />
+                        </button>
+                    </div>
+
+                    <p className="mb-6 text-sm md:text-md font-semibold">{currentQuestionData?.question}</p>
 
                     <div className="flex flex-col space-y-2 w-full">
-                        {quizQuestions[currentQuestion].options.map((option, index) => (
+                        {currentQuestionData?.options.map((option, index) => (
                             <button
                                 key={index}
                                 onClick={() => handleAnswerSelection(option)}
@@ -140,7 +207,7 @@ function Quiz() {
                     </button>
                     <button
                         onClick={() => navigateQuestion(1)}
-                        disabled={currentQuestion === quizQuestions.length - 1}
+                        disabled={currentQuestion === (isTranslated ? translatedQuestions.length - 1 : quizQuestions.length - 1)}
                         className="flex justify-around items-center py-4 w-full bg-black/85 rounded-xl disabled:bg-black/40 text-gray-100 font-semibold"
                     >
                         Next <FaChevronRight size={13} />
