@@ -91,7 +91,7 @@ function Quiz() {
 
     return (
         <>
-            <div className="flex flex-col min-h-[90vh] p-2 mt-2">
+            <div className="flex flex-col p-2 mt-2">
                 <div className="flex justify-between mt-2 px-2  items-center">
                     <h2 className="text-xl font-semibold ">Quiz by Quiz20</h2>
                     <button
@@ -134,18 +134,18 @@ function Quiz() {
                     </div>
                 </div>
 
-                <div className="fixed bottom-0 left-0 right-0 p-4 bg-white flex justify-center gap-x-2">
+                <div className="fixed bottom-0 left-0 right-0 p-4 flex justify-center gap-x-2">
                     <button
                         onClick={handlePrevious}
                         disabled={currentQuestion === 0}
-                        className="text-sm flex justify-center items-center gap-x-14 md:gap-x-96  py-4  w-full bg-black/85 rounded-xl disabled:bg-black/40 text-gray-100"
+                        className="flex justify-around items-center py-4  w-full bg-black/85 rounded-xl disabled:bg-black/40 text-gray-100 font-semibold"
                     >
                         <FaChevronLeft size={13} /> Previous
                     </button>
                     <button
                         onClick={handleNext}
                         disabled={currentQuestion === quizQuestions.length - 1}
-                        className="text-sm md:text-md flex justify-center items-center gap-x-14 md:gap-x-96  py-4  w-full bg-black/85  rounded-xl disabled:bg-black/40 text-gray-100"
+                        className="flex justify-around items-center py-4  w-full bg-black/85  rounded-xl disabled:bg-black/40 text-gray-100 font-semibold"
                     >
                         Next <FaChevronRight size={13} />
                     </button>

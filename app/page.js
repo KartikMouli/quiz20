@@ -7,7 +7,7 @@ import Result from "./components/result";
 
 export default function Home() {
 
-  const [timer, setTimer] = useState(5);
+  const [timer, setTimer] = useState(1200);
   const [showResultModal, setShowResultModal] = useState(false)
 
   useTimer(timer, setTimer, showResultModal,setShowResultModal)
