@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ProgressBar from "./ProgressBar";
+import ProgressBar from "./progressbar";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import SubmitModal from "./submitModal";
 import { useQuizContext } from "../context/quizContext";
