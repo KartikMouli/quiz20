@@ -5,6 +5,8 @@ import SubmitModal from "./submitModal";
 import { useQuizContext } from "../context/quizContext";
 import axios from "axios";
 import { MdGTranslate } from "react-icons/md";
+import { BsExclamationTriangle } from "react-icons/bs";
+import { IoMdShare } from "react-icons/io";
 
 function Quiz() {
     const { setCorrect, setIncorrect, setUnattempted, handleShowResult, quizQuestions, showResultModal } = useQuizContext();
@@ -110,12 +112,14 @@ function Quiz() {
             <div className="flex flex-col p-1 mt-1 h-[80vh]">
                 <div className="flex justify-between mt-2 px-2 items-center">
                     <h2 className="text-lg font-semibold">Quiz by Quiz20</h2>
+
                     <button
                         className="text-sm bg-[#2196f3] text-white py-2 px-12 sm:min-w-96 rounded-xl"
                         onClick={handleOpenSubmitModal}
                     >
                         Submit
                     </button>
+
                 </div>
 
                 <ProgressBar
@@ -130,16 +134,21 @@ function Quiz() {
                 />
 
 
-                <div className="flex justify-between mt-3 px-1 ">
-                    <h2 className="text-blue-400 text-md">
+                <div className="flex justify-between mt-3 px-1">
+                    <h2 className="text-[#2196f3] text-md">
                         Question {currentQuestion + 1} of {quizQuestions.length}
                     </h2>
-                    <button
-                        className={`${isTranslated ? "text-blue-500" : "text-gray-500 dark:text-white"} `}
-                        onClick={toggleTranslation}
-                    >
-                        <MdGTranslate size={24} className="mr-3" />
-                    </button>
+                    <div className="flex gap-4 mr-2">
+                        <IoMdShare size={24} />
+                        <button
+                            className={`${isTranslated ? "text-blue-500" : "text-gray-500 dark:text-white"} `}
+                            onClick={toggleTranslation}
+                        >
+                            <MdGTranslate size={24} />
+                        </button>
+                        <BsExclamationTriangle size={24} />
+
+                    </div>
                 </div>
 
                 <div className="flex-1 mt-7 px-1 pb-7 overflow-y-auto no-scrollbar">
@@ -161,7 +170,7 @@ function Quiz() {
                     </div>
                 </div>
 
-                <div className="fixed bottom-0 left-0 right-0 flex px-2 pb-4 gap-x-2 mt-auto">
+                <div className="fixed bottom-0 left-0 right-0 flex px-2 pb-6 gap-x-2 mt-auto">
                     <button
                         onClick={() => navigateQuestion(-1)}
                         disabled={currentQuestion === 0}

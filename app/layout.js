@@ -1,4 +1,3 @@
-import localFont from "next/font/local";
 import "./globals.css";
 import { QuizProvider } from "./context/quizContext";
 import { ThemeProvider } from "./components/theme-provider";

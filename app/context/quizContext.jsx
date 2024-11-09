@@ -10,7 +10,7 @@ export const QuizProvider = ({ children }) => {
     const [correct, setCorrect] = useState(0);
     const [incorrect, setIncorrect] = useState(0);
     const [unattempted, setUnattempted] = useState(0);
-    const [quizQuestions] = useState(questions); // Initialize once from data
+    const [quizQuestions] = useState(questions); 
 
     // Function to display result modal
     const handleShowResult = () => setShowResultModal(true);
