@@ -49,7 +49,7 @@ const DoughnutChart = ({ total }) => {
             const centerY = (top + bottom) / 2;
 
             ctx.save();
-            ctx.font = 'bold 20px sans-serif';
+            ctx.font = '20px sans-serif';
             ctx.fillStyle = theme === 'light' ? 'black' : 'white';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
@@ -59,8 +59,8 @@ const DoughnutChart = ({ total }) => {
     };
 
     return (
-        <div className="flex justify-center items-center p-4 dark:text-white">
-            <div className="w-64 h-64 md:h-96 md:w-96 dark:text-white" >
+        <div className="flex justify-center items-center dark:text-white">
+            <div className="w-64 h-64  dark:text-white" >
                 <Doughnut data={data} options={options} plugins={[textCenterPlugin]} />
             </div>
         </div>

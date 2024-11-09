@@ -14,8 +14,8 @@ function Result() {
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-white dark:bg-[#252526] p-4">
-      <div className="flex flex-col flex-grow overflow-y-auto">
-        <h1 className="text-3xl p-2 mt-10 text-center">Quiz by Quiz10</h1>
+      <div className="flex flex-col flex-grow overflow-y-auto no-scrollbar">
+        <h1 className="text-3xl p-2 mt-10 text-center">Quiz by Quiz20</h1>
         <h2 className="text-3xl font-semibold mt-4 text-center">Quiz20</h2>
 
         {/* Doughnut Chart */}
@@ -24,7 +24,7 @@ function Result() {
         </div>
 
         {/* Score Summary */}
-        <div className="grid grid-cols-3 gap-2 px-8 text-sm font-semibold text-gray-600 dark:text-white my-4 text-center">
+        <div className="grid grid-cols-3 gap-2 px-8 text-sm font-semibold text-gray-600 dark:text-white my-4 mt-auto pb-7 text-center">
           <div>
             <p>Positive</p>
             <p className="font-bold mt-2">{positive}</p>

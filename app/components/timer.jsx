@@ -8,7 +8,7 @@ function formatTime(time) {
 function Timer({ timer }) {
 
     return (
-        <div className="bg-white dark:bg-[#252526] px-5 text-black/85 dark:text-white text-3xl font-semibold rounded-full">
+        <div className="bg-white dark:bg-[#252526] px-4 text-black/85 dark:text-white text-3xl rounded-full">
             {formatTime(timer)}
         </div>
     );

@@ -7,7 +7,7 @@ function SubmitModal({ isOpen, onClose, showResult, unattempted }) {
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black bg-opacity-50">
             <div className="bg-white rounded-3xl p-5 shadow-md w-92 md:w-fit dark:text-black">
                 <h1 className='text-2xl text-red-500 font-bold mb-4'>Submit Quiz</h1>
-                <h3 className='mb-3'>Unattempted  : <span className='font-bold'>{unattempted}</span></h3>
+                <h3 className='mb-3 '>Unattempted  : <span className='font-bold'>{unattempted}</span></h3>
                 <h3 className='mb-3'>Once submitted you will not be able to modify your answers.</h3>
                 <h3 className='mb-4 font-semibold'>Are you sure you want to submit?</h3>
 

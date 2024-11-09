@@ -1,6 +1,6 @@
 [
     {
-        "question": "Who was the first Governor of Bihar?",
+        "question": "Who was the first Governor of Bihar, a significant figure in the early years of the state, who helped in shaping its administrative framework after India gained independence, and who had a notable contribution to the political and social structure of the region?",
         "options": [
             "Rajendra Prasad",
             "S. K. Sinha",
@@ -10,7 +10,7 @@
         "answer": "Dr. Syed Mahmud"
     },
     {
-        "question": "Which is the state flower of Bihar?",
+        "question": "Which flower, symbolizing beauty and grace, was chosen as the official state flower of Bihar, representing its cultural heritage and significance? This flower holds deep ties to Indian traditions, and its presence in the state holds both historical and cultural value.",
         "options": [
             "Sunflower",
             "Lotus",
@@ -20,7 +20,7 @@
         "answer": "Lotus"
     },
     {
-        "question": "In which year did Bihar attain statehood?",
+        "question": "In which year did the state of Bihar attain full statehood, marking a significant milestone in the region's political history and its separation from Bengal, which was instrumental in the development of its own governance and cultural identity within post-independence India?",
         "options": [
             "1947",
             "1950",
@@ -30,7 +30,7 @@
         "answer": "1950"
     },
     {
-        "question": "Who is known as the 'Father of Bihar's Revolution'?",
+        "question": "Who is known as the 'Father of Bihar's Revolution,' a prominent leader who played a critical role in mobilizing the masses against British rule, and later contributed significantly to the social and political movements in Bihar, advocating for the rights of the oppressed and marginalized communities in the state?",
         "options": [
             "Ram Manohar Lohia",
             "Jayaprakash Narayan",
@@ -40,7 +40,7 @@
         "answer": "Jayaprakash Narayan"
     },
     {
-        "question": "What is the capital of Bihar?",
+        "question": "What is the capital of Bihar, the largest city in the state, known for its historical, cultural, and educational significance? This city has long been the political, economic, and intellectual hub of the region, with a rich history dating back to ancient times.",
         "options": [
             "Patna",
             "Gaya",
@@ -48,55 +48,14 @@
             "Muzaffarpur"
         ],
         "answer": "Patna"
-    },
-    {
-        "question": "Which is the largest river in Bihar?",
-        "options": [
-            "Ganga",
-            "Sone",
-            "Kosi",
-            "Gandak"
-        ],
-        "answer": "Ganga"
-    },
-    {
-        "question": "Who was the first woman Chief Minister of Bihar?",
-        "options": [
-            "Indira Gandhi",
-            "Rabri Devi",
-            "Vishwanath Pratap Singh",
-            "Kedar Pandey"
-        ],
-        "answer": "Rabri Devi"
-    },
-    {
-        "question": "Bihar was part of which ancient kingdom?",
-        "options": [
-            "Maurya Empire",
-            "Gupta Empire",
-            "Magadh",
-            "Chola Empire"
-        ],
-        "answer": "Magadh"
-    },
-    {
-        "question": "Which district in Bihar is known for its Bodhi tree?",
+    },{
+        "question": "Contrary to popular belief, Lorem Ipsum There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc. is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, , comes from a line in section 1.10.3 The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from  by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
         "options": [
             "Patna",
-            "Bodh Gaya",
-            "Muzaffarpur",
-            "Gaya"
+            "Gaya",
+            "Bhagalpur",
+            "Muzaffarpur"
         ],
-        "answer": "Bodh Gaya"
-    },
-    {
-        "question": "What is the official language of Bihar?",
-        "options": [
-            "Hindi",
-            "Bengali",
-            "Bhojpuri",
-            "Maithili"
-        ],
-        "answer": "Hindi"
+        "answer": "Patna"
     }
 ]

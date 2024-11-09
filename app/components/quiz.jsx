@@ -107,11 +107,11 @@ function Quiz() {
 
     return (
         <>
-            <div className="flex flex-col p-2 mt-2 h-[91vh]">
+            <div className="flex flex-col p-1 mt-1 h-[80vh]">
                 <div className="flex justify-between mt-2 px-2 items-center">
-                    <h2 className="text-xl font-semibold">Quiz by Quiz20</h2>
+                    <h2 className="text-lg font-semibold">Quiz by Quiz20</h2>
                     <button
-                        className="text-sm bg-[#2196f3] text-white py-2 px-12 md:min-w-96 rounded-xl font-semibold"
+                        className="text-sm bg-[#2196f3] text-white py-2 px-12 sm:min-w-96 rounded-xl"
                         onClick={handleOpenSubmitModal}
                     >
                         Submit
@@ -130,42 +130,42 @@ function Quiz() {
                 />
 
 
-                <div className="flex justify-between mt-2 px-2">
-                    <h2 className="text-blue-400 text-md font-semibold">
+                <div className="flex justify-between mt-3 px-1 ">
+                    <h2 className="text-blue-400 text-md">
                         Question {currentQuestion + 1} of {quizQuestions.length}
                     </h2>
                     <button
-                        className={`${isTranslated ? "text-blue-500" : "text-black dark:text-white"} `}
+                        className={`${isTranslated ? "text-blue-500" : "text-gray-500 dark:text-white"} `}
                         onClick={toggleTranslation}
                     >
-                        <MdGTranslate size={24} />
+                        <MdGTranslate size={24} className="mr-3" />
                     </button>
                 </div>
 
-                <div className="flex-1 mt-6 overflow-y-auto px-2">
-                    <p className="mb-6 text-sm md:text-md font-semibold">{currentQuestionData?.question}</p>
+                <div className="flex-1 mt-7 px-1 pb-7 overflow-y-auto no-scrollbar">
+                    <p className="mb-6 text-sm font-semibold md:text-md">{currentQuestionData?.question}</p>
 
-                    <div className="space-y-2">
+                    <div className="space-y-4 flex flex-col">
                         {currentQuestionData?.options.map((option, index) => (
                             <button
                                 key={index}
                                 onClick={() => handleAnswerSelection(option)}
-                                className={`flex items-center p-2 rounded-lg ${selectedAnswer === option ? 'border-2 border-[#2196f3]' : ''}`}
+                                className={`flex items-center p-1 rounded-lg ${selectedAnswer === option ? 'border-2 border-[#2196f3]' : ''}`}
                             >
                                 <div className={`w-9 h-9 mr-4 flex items-center justify-center text-white font-bold rounded-full ${selectedAnswer === option ? 'bg-[#2196f3]' : 'bg-[#9e9e9e]'}`}>
                                     {String.fromCharCode(65 + index)}
                                 </div>
-                                <span className="text-xs md:text-sm">{option}</span>
+                                <span className="text-xs font-extralight">{option}</span>
                             </button>
                         ))}
                     </div>
                 </div>
 
-                <div className="flex gap-x-2 mt-auto">
+                <div className="fixed bottom-0 left-0 right-0 flex px-2 pb-4 gap-x-2 mt-auto">
                     <button
                         onClick={() => navigateQuestion(-1)}
                         disabled={currentQuestion === 0}
-                        className="flex justify-around items-center py-3.5 w-full bg-[#252526] dark:bg-[#d4e09b] dark:text-[#252526] rounded-xl text-gray-100 font-semibold disabled:bg-black/40 dark:disabled:bg-[#7c8261]"
+                        className="flex justify-around items-center py-3.5 w-full bg-[#252526] dark:bg-[#d4e09b] dark:text-[#252526] rounded-xl text-gray-100 disabled:bg-black/40 dark:disabled:bg-[#7c8261]"
                     >
                         <FaChevronLeft size={16} />
                         <span>Previous</span>
@@ -173,7 +173,7 @@ function Quiz() {
                     <button
                         onClick={() => navigateQuestion(1)}
                         disabled={currentQuestion === quizQuestions.length - 1}
-                        className="flex justify-around items-center py-3.5 w-full bg-[#252526] dark:bg-[#d4e09b] dark:text-[#252526] rounded-xl text-gray-100 font-semibold disabled:bg-black/40 dark:disabled:bg-[#7c8261]"
+                        className="flex justify-around items-center py-3.5 w-full bg-[#252526] dark:bg-[#d4e09b] dark:text-[#252526] rounded-xl text-gray-100 disabled:bg-black/40 dark:disabled:bg-[#7c8261]"
                     >
                         <span>Next</span>
                         <FaChevronRight size={16} />
