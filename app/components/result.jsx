@@ -42,15 +42,15 @@ function Result() {
 
       {/* Buttons Section */}
       <div className="w-full space-y-2 mt-auto">
-        <button className="flex items-center justify-around bg-[#ff0a54] text-white py-4 rounded-lg font-semibold w-full gap-2">
+        <button className="ml-1 flex items-center justify-around bg-[#ff0a54] text-white py-4  font-semibold w-full rounded-lg rounded-br-full">
           LEADERBOARD <MdLeaderboard size={24} />
         </button>
 
         <div className="flex gap-2 w-full">
-          <button className="flex items-center justify-around py-4 w-full sm:w-1/2 bg-[#252526] dark:bg-[#d4e09b] dark:text-black/85 rounded-xl text-gray-100 font-semibold gap-2">
+          <button className="flex items-center justify-around py-4 w-full sm:w-1/2 bg-[#252526] dark:bg-[#d4e09b] dark:text-[#252526] rounded-xl text-gray-100 font-semibold gap-2">
             <IoMdShare size={24} /> Share
           </button>
-          <button className="flex items-center justify-around py-4 w-full sm:w-1/2 bg-[#252526] dark:bg-[#d4e09b] dark:text-black/85 rounded-xl text-gray-100 font-semibold gap-2">
+          <button className="flex items-center justify-around py-4 w-full sm:w-1/2 bg-[#252526] dark:bg-[#d4e09b] dark:text-[#252526] rounded-xl text-gray-100 font-semibold gap-2">
             <MdOutlineRemoveRedEye size={24} /> Answers
           </button>
         </div>

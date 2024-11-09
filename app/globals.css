@@ -31,6 +31,7 @@ body {
 }
 
 @layer base {
+
   html,
   body {
     @apply no-scrollbar;
